@@ -55,17 +55,17 @@ public class FaderGUI {
 		
 		mainFrame.add(titleLabel);
 		mainFrame.add(fadersPanel);
-		mainFrame.add(new JLabel(new ImageIcon("images/preset/selection.png")));
+		mainFrame.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/preset/selection.png"))));
 		mainFrame.add(presetButtonsPanel);
 		mainFrame.add(presetLEDsPanel);
-		mainFrame.add(new JLabel(new ImageIcon("images/preset/management.png")));
+		mainFrame.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/preset/management.png"))));
 		mainFrame.add(presetEditPanel);
 		
 		mainFrame.setVisible(true);  
 	}
 
 	private void showGridLayout(){   
-		titleLabel.setIcon(new ImageIcon("images/title.png"));
+		titleLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/title.png")));
 
 		createFaderSection();
 		createPresetSection();
@@ -84,13 +84,13 @@ public class FaderGUI {
 		faderLabels = new JLabel[8];
 
 		for (int i = 0; i < faderButtons.length; i++) {
-			faderLabels[i] = new JLabel(new ImageIcon("images/faders/fader" + (i+1) + ".png"));
+			faderLabels[i] = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/faders/fader" + (i+1) + ".png")));
 			fadersPanel.add(faderLabels[i]);
 		}
 
 		for (int i = 0; i < faderButtons.length; i++) {
-			//faderButtons[i] = new JButton(new ImageIcon("images/numbers/1.png")); 
-			faderButtons[i] = new JButton("0");
+			faderButtons[i] = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/numbers/0.png"))); 
+			//faderButtons[i] = new JButton("0");
 			faderButtons[i].setBorder(null);
 			faderButtons[i].setContentAreaFilled(false);
 			fadersPanel.add(faderButtons[i]);
@@ -105,7 +105,7 @@ public class FaderGUI {
 			presetButtonsPanel.add(presetButtons[i]);
 		}
 		
-		presetEditPanel.add(new JLabel(new ImageIcon("images/preset/store.png")));
-		presetEditPanel.add(new JLabel(new ImageIcon("images/preset/delete.png")));
+		presetEditPanel.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/preset/store.png"))));
+		presetEditPanel.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/preset/delete.png"))));
 	}
 }

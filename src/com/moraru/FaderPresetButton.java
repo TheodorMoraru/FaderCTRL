@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,10 +20,10 @@ public class FaderPresetButton extends Component{
 
 	JToggleButton button = new JToggleButton();
 	JLabel led = new JLabel();
-	ImageIcon buttonOn = new ImageIcon("images/preset/on.png");
-	ImageIcon buttonOff = new ImageIcon("images/preset/off.png");
-	ImageIcon ledOn = new ImageIcon("images/leds/on.png");
-	ImageIcon ledOff = new ImageIcon("images/leds/off.png");
+	ImageIcon buttonOn = new ImageIcon(getClass().getClassLoader().getResource("images/preset/on.png"));
+	ImageIcon buttonOff = new ImageIcon(getClass().getClassLoader().getResource("images/preset/off.png"));
+	ImageIcon ledOn = new ImageIcon(getClass().getClassLoader().getResource("images/leds/on.png"));
+	ImageIcon ledOff = new ImageIcon(getClass().getClassLoader().getResource("images/leds/off.png"));
 	boolean isOn = false;
 	private int index;
 	String [][] presetStoredValues;
@@ -70,7 +71,8 @@ public class FaderPresetButton extends Component{
 
 	public void savePreset(JPanel panel){
 		try{
-			FileWriter writer = new FileWriter("presetOptions.csv");
+			
+			FileWriter writer = new FileWriter("resources/presetOptions.csv");
 			for (Component c : panel.getComponents()) 
 				if (c instanceof FaderPresetButton) {
 					writer.append(c.getName());
@@ -86,7 +88,7 @@ public class FaderPresetButton extends Component{
 
 	public void loadPreset(String[][] values, int index, JPanel panel) throws IOException {
 		@SuppressWarnings("resource")
-		BufferedReader fileReader = new BufferedReader(new FileReader("presetOptions.csv"));
+		BufferedReader fileReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("resources/presetOptions.csv")));
 		String line = fileReader.readLine();
 		int i = 0;
 		while (line != null) {
@@ -115,7 +117,7 @@ public class FaderPresetButton extends Component{
 		for (Component c : panel.getComponents()) {
 			
 			if (c instanceof JButton) {
-			((JButton) c).setText(values[index][j++]);
+			((JButton) c).setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/numbers/" + values[index][j++] + ".png")));
 			}	
 		}
 		
