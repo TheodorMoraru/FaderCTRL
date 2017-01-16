@@ -18,6 +18,7 @@ public class FaderGUI {
 	private JLabel [] faderLabels;
 	private JButton [] faderButtons;
 	private FaderPresetButton [] presetButtons;
+	private String [][] presetStoredValues;
 	
 	public FaderGUI(){
 		prepareGUI();
@@ -50,6 +51,7 @@ public class FaderGUI {
 		faderLabels = new JLabel [8];
 		presetButtons = new FaderPresetButton[5];
 		presetEditPanel = new JPanel();
+		presetStoredValues = new String[5][8];
 		
 		mainFrame.add(titleLabel);
 		mainFrame.add(fadersPanel);
@@ -87,18 +89,19 @@ public class FaderGUI {
 		}
 
 		for (int i = 0; i < faderButtons.length; i++) {
-			faderButtons[i] = new JButton(new ImageIcon("images/numbers/1.png")); 
+			//faderButtons[i] = new JButton(new ImageIcon("images/numbers/1.png")); 
+			faderButtons[i] = new JButton("0");
 			faderButtons[i].setBorder(null);
 			faderButtons[i].setContentAreaFilled(false);
 			fadersPanel.add(faderButtons[i]);
 		}
-
 	}
 
 	private void createPresetSection(){
 		
 		for (int i = 0; i < presetButtons.length; i++) {
-			presetButtons[i] = new FaderPresetButton(presetButtonsPanel); 
+			presetButtons[i] = new FaderPresetButton(presetButtonsPanel, fadersPanel, presetStoredValues); 
+			presetButtons[i].setIndex(i);
 			presetButtonsPanel.add(presetButtons[i]);
 		}
 		
